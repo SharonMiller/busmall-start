@@ -21,12 +21,11 @@ Product.totalClickes = 0;
 function Product(src, imageName, size) {
   this.src = src;
   this.imageName = imageName;
-  this.votedFor = 0;
+  this.votedTimes = 0;
   this.imageDisplayedCount = 0;
   this.size = size || '300px';
   Product.productsArray.push(this);
-}
-Product.voteCount = 0;
+};
 // ItemImage.prototype.render = function(){
 //   console.log ('rendering');
 // };
@@ -50,14 +49,14 @@ Product.renderThreeRandomly = function () {
   do {
     randomNumber1 = Math.floor(Math.random() * Product.productsArray.length);
   } while (randomNumber1 === pastRandomNumber1 || randomNumber1 === pastRandomNumber2 || randomNumber1 === pastRandomNumber3);
-  
+
   do {
     randomNumber2 = Math.floor(Math.random() * Product.productsArray.length);
-  } while (randomNumber1 === randomNumber2 || randomNumber2 === pastRandomNumber2 || randomNumber1 === pastRandomNumber1);
-  
+  } while (randomNumber1 === randomNumber2 || randomNumber2 === pastRandomNumber1 || randomNumber2 === pastRandomNumber2 || randomNumber2 === pastRandomNumber3);
+
   do {
     randomNumber3 = Math.floor(Math.random() * Product.productsArray.length);
-  } while (randomNumber1 === randomNumber2 || randomNumber1 === randomNumber3 || randomNumber3 === pastRandomNumber2 || randomNumber3 === pastRandomNumber3);
+  } while (randomNumber3 === randomNumber1 || randomNumber3 === randomNumber2 || randomNumber3 === pastRandomNumber1 || randomNumber3 === pastRandomNumber2 || randomNumber3 === pastRandomNumber3);
 
   product1.src = Product.productsArray[randomNumber1].src;
   product2.src = Product.productsArray[randomNumber2].src;
@@ -91,12 +90,18 @@ new Product('./img/bubblegum.jpg', 'Meatball Bubblegum');
 
 
 function handleClickEvent(event) {
-  Product.renderThreeRandomly();
-  // var clickedNode = event.target;
+  var clickedNode = event.target;
+  // console.log(clickedNode.dataset.index);
+  if (clickedNode.dataset.index >= 0) {
+    Product.votecount++;
+    Product.renderThreeRandomly();
+  }
+  if (Product.voteCount === 25);{
+    console.log('you reached 25 votes');
+  }
 
-  // Product.votecount++;
-  // if (Product.voteCount === 25);
   //stop counter and display
+
 }
 // Product.random();
 
