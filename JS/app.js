@@ -14,7 +14,7 @@ var imageSection = document.getElementById('clickMe');
 Product.productsArray = [];
 
 //array for images clicked
-Product.totalClickes = 0;
+Product.totalClicks = 0;
 
 //track which items were lastshonwn
 
@@ -65,12 +65,18 @@ Product.renderThreeRandomly = function () {
   product1.dataset.index = randomNumber1;
   product2.dataset.index = randomNumber2;
   product3.dataset.index = randomNumber3;
+
+  Product.productsArray[randomNumber1].imageDisplayedCount++;
+  Product.productsArray[randomNumber2].imageDisplayedCount++;
+  Product.productsArray[randomNumber3].imageDisplayedCount++;
+
+
   //saving the new random numbers into the past random numbers- only checks in the while loop
   pastRandomNumber1 = randomNumber1;
   pastRandomNumber2 = randomNumber2;
   pastRandomNumber3 = randomNumber3;
 
-  //why did we do this, what is this doing???
+  //grabbing the text from the image in HTML and matching it to the product array
   prodName1.textContent = Product.productsArray[randomNumber1].imageName;
   prodName2.textContent = Product.productsArray[randomNumber2].imageName;
   prodName3.textContent = Product.productsArray[randomNumber3].imageName;
@@ -87,23 +93,47 @@ new Product('./img/bathroom.jpg', 'TP Tablet Holder');
 new Product('./img/boots.jpg', 'Open Toed Rainboots');
 new Product('./img/breakfast.jpg', 'All in One Breakfast Cooker');
 new Product('./img/bubblegum.jpg', 'Meatball Bubblegum');
+new Product('./img/chair.jpg', 'Chair');
+new Product('./img/cthulhu.jpg', 'Cthulu');
+new Product('./img/dog-duck.jpg', 'Duck Mask for Dog');
+new Product('./img/dragon.jpg', 'Dragon Meat');
+new Product('./img/pen.jpg', 'Pen');
+new Product('./img/pet-sweep.jpg', 'Pet Sweeping Slippers');
+new Product('./img/scissors.jpg', 'Pizza Scissors');
+new Product('./img/shark.jpg', 'Shark Sleeping Bag');
+new Product('./img/sweep.jpg', 'Sweep Slippers');
+new Product('./img/tauntaun.jpg', 'Tauntaun Sleeping Bag');
+new Product('./img/unicorn.jpg', 'Unicorn Meat');
+new Product('./img/usb.gif', 'Wiggly USB Tail');
+new Product('./img/water-can.jpg', 'Water Can');
+new Product('./img/wine-glass.jpg', 'Wine Glass');
 
 
 function handleClickEvent(event) {
   var clickedNode = event.target;
+  console.log(Product.totalClicks);
   // console.log(clickedNode.dataset.index);
   if (clickedNode.dataset.index >= 0) {
-    Product.votecount++;
     Product.renderThreeRandomly();
+    Product.totalClicks++;
+    Product.productsArray[clickedNode.dataset.index].votedTimes++;
   }
-  if (Product.voteCount === 25);{
-    console.log('you reached 25 votes');
+  console.log('I AM HERE');
+  if (Product.totalClicks == 25) {
+    var ulEl = document.getElementById('results-list');
+    console.log('im in the if statement');
+    for (var i = 0; i < Product.productsArray.length; i++) {
+      var liEl = document.createElement('li');
+      console.log('im in the for loop');
+      liEl.textContent = Product.productsArray[i].votedTimes + ' votes for the ' + Product.productsArray[i].imageName;
+      ulEl.appendChild(liEl);
+      console.log(ulEl + 'hi');
+    }
+    console.log('NEAR IMAGE');
+    imageSection.removeEventListener('click', handleClickEvent);
+    //number votes for the banana slicer
   }
-
-  //stop counter and display
-
 }
-// Product.random();
 
 
 imageSection.addEventListener('click', handleClickEvent);

@@ -49,6 +49,8 @@ nav li a{
 
   main > ul {
       margin-bottom:30px;
+      margin-top:30px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   
   }
   main img{
