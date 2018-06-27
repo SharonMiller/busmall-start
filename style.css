@@ -49,6 +49,8 @@ nav li a{
 
   main > ul {
       margin-bottom:30px;
+      margin-top:30px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   
   }
   main img{
@@ -57,6 +59,7 @@ nav li a{
     max-height: 300px;
     max-width: 100%;
     top: 10px;
+    margin-bottom: 20px;
     
 
   }
@@ -71,6 +74,7 @@ nav li a{
     transition: all 35ms grey;
     display: block;
     clear: both;
+    margin-top: 20px;
     }
   p {
     max-width: 900px;
@@ -91,6 +95,7 @@ nav li a{
     clear: both;
     bottom: 0px;
     left: 0px;
+    margin-top: 10px;
   }
 
    button:hover {

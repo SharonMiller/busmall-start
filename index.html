@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Bus Mall</title>
-  <link rel="stylesheet" href="reset.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -23,20 +23,20 @@
     </nav>
   </header>
   <main>
-    <section id="vote">
+    <section id="clickMe">
       <div class="imageContainer">
-        <img id="item1" data-index="0" src="./img/bag.jpg" alt="Star Wars Carry-ons"> <span class="vote"> Vote:
-        <input type="radio" id="vote1"></span>
+        <img id="product1" data-index="0" src="./img/bag.jpg" alt="Star Wars Carry-ons"> <span class="vote"> <span id= "vote1"> for Start Wars Carry-Ons:</span>
+        <input type="radio"></span>
       </div>
       <div class="imageContainer">
-        <img id="item2" data-index="10" src="./img/dragon.jpg" alt="Dragon USB">
-        <span class="vote"> Vote:
-          <input type="radio" id="vote2">
+        <img id="product2" data-index="10" src="./img/dragon.jpg" alt="Dragon Meat">
+        <span class="vote"> <span id = "vote2"> Vote For Dragon Meat:
+        </span> <input type="radio">
         </span>
       </div>
       <div class="imageContainer">
-        <img id="item2" data-index="16" src="./img/unicorn.jpg" alt="Can of Unicorn Meat"><span class="vote"> Vote:
-          <input type="radio" id="vote3">
+        <img id="product3" data-index="16" src="./img/unicorn.jpg" alt="Can of Unicorn Meat"><span class="vote"> <span id= "vote3"> Vote For Unicorn Meat:</span>
+          <input type="radio">
         </span>
       </div>
 
@@ -46,14 +46,15 @@
         the "submit vote" button. This process will be repeated 25 times, after you have voted all 25 times we will show
         you the results. </p>
     </section>
-
+    <ul id="results-list">
+      </ul>
   </main>
   <footer>
     <div>
       <p>BusMall Inc</p>
     </div>
   </footer>
-  <script src="js/app.js"></script>
+  <script src="./js/app.js"></script>
 </body>
 
 </html>
