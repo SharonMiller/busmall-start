@@ -8,6 +8,13 @@ var product3 = document.getElementById('product3');
 var prodName3 = document.getElementById('vote3');
 var imageSection = document.getElementById('clickMe');
 
+
+//global variables for chart
+var chartLabels = [];
+var chartVotedTimes = [];
+var chartImageDisplayedCount = [];
+var chartImagePercent = [];
+
 //===================
 
 //create array for all images
@@ -118,7 +125,6 @@ function handleClickEvent(event) {
     Product.totalClicks++;
     Product.productsArray[clickedNode.dataset.index].votedTimes++;
   }
-  console.log('I AM HERE');
   if (Product.totalClicks == 25) {
     var ulEl = document.getElementById('results-list');
     console.log('im in the if statement');
@@ -131,9 +137,16 @@ function handleClickEvent(event) {
     }
     console.log('NEAR IMAGE');
     imageSection.removeEventListener('click', handleClickEvent);
-    //number votes for the banana slicer
   }
 }
+//chart info function
+// var ctx = DocumentType.getElementById('myChart').getContext('2d');
+// var myChart = new Chart (ctx, {
+//   type: 'horizontalBar',
+//   data: data,
+//   options: options,
+//   label: Product.productsArray[i].imageName,
+// });
 
 
 imageSection.addEventListener('click', handleClickEvent);
