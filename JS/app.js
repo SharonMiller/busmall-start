@@ -7,13 +7,13 @@ var prodName2 = document.getElementById('vote2');
 var product3 = document.getElementById('product3');
 var prodName3 = document.getElementById('vote3');
 var imageSection = document.getElementById('clickMe');
-
+var votingDataChart;
 
 //global variables for chart
-var chartLabels = [];
+var chartProductLabels = [];
 var chartVotedTimes = [];
-var chartImageDisplayedCount = [];
-var chartImagePercent = [];
+// var chartImageDisplayedCount = [];
+// var chartImagePercent = [];
 
 //===================
 
@@ -22,6 +22,8 @@ Product.productsArray = [];
 
 //array for images clicked
 Product.totalClicks = 0;
+
+
 
 //track which items were lastshonwn
 
@@ -118,35 +120,105 @@ new Product('./img/wine-glass.jpg', 'Wine Glass');
 
 function handleClickEvent(event) {
   var clickedNode = event.target;
-  console.log(Product.totalClicks);
+  // console.log(Product.totalClicks);
   // console.log(clickedNode.dataset.index);
   if (clickedNode.dataset.index >= 0) {
     Product.renderThreeRandomly();
     Product.totalClicks++;
     Product.productsArray[clickedNode.dataset.index].votedTimes++;
   }
+  //stop voting after 25 clicks and create the product chart
   if (Product.totalClicks == 25) {
-    var ulEl = document.getElementById('results-list');
-    console.log('im in the if statement');
-    for (var i = 0; i < Product.productsArray.length; i++) {
-      var liEl = document.createElement('li');
-      console.log('im in the for loop');
-      liEl.textContent = Product.productsArray[i].votedTimes + ' votes for the ' + Product.productsArray[i].imageName;
-      ulEl.appendChild(liEl);
-      console.log(ulEl + 'hi');
-    }
-    console.log('NEAR IMAGE');
-    imageSection.removeEventListener('click', handleClickEvent);
+    console.log('25 clicks');
+    generateProductData();
+    drawChart();
   }
 }
-//chart info function
-// var ctx = DocumentType.getElementById('myChart').getContext('2d');
-// var myChart = new Chart (ctx, {
-//   type: 'horizontalBar',
-//   data: data,
-//   options: options,
-//   label: Product.productsArray[i].imageName,
-// });
+imageSection.removeEventListener('click', handleClickEvent);
+
+//Create a function to display my labels in my chart
+function generateProductData() {
+  // console.log('this is my product data');
+  for (var i = 0; i < Product.productsArray.length; i++) {
+    productData.labels[i] = Product.productsArray[i].imageName;
+    productData.datasets['0']['data'][i] = Product.productsArray[i].votedTimes;
+  }
+}
+var productData = {
+  labels: [],
+  datasets: [{
+    label: 'Vote Results',
+    backgroundColor: [
+      '#FFD700',
+      '#FE5000',
+      '#CE0058',
+      '#BB29BB',
+      '#10069F',
+      '#0085CA',
+      '#00AB84',
+      '#009ACE',
+      '#C6BCD0',
+      '#3F2A56',
+      '#A0D1CA',
+      '#6CC24A',
+      '#00966C',
+      '#00A9E0',
+      '#C964CF',
+      '#DF1995',
+      '#E03E52',
+      '#FFAE62',
+      '#FBD872',
+      '#BF9BDE',
+
+    ],
+    borderColor: [
+      'rgba(255,99,132,1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)',
+    ],
+    data: [],
+    borderWidth: 1,
+  }]
+};
+
+
+// chart info function//////////////
+function drawChart() {
+  var ctx = document.getElementById('votingDataChart').getContext('2d');
+  votingDataChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: productData,
+    // {
+    //   labels: chartProductLabels,
+    //   datasets: [{
+    //     label: 'Vote Results',
+    //     data: [],
+    //     backgroundColor: [
+    //       'rgba(255, 99, 132, 0.2)',
+    //       'rgba(54, 162, 235, 0.2)',
+    //       'rgba(255, 206, 86, 0.2)',
+    //       'rgba(75, 192, 192, 0.2)',
+    //       'rgba(153, 102, 255, 0.2)',
+    //       'rgba(255, 159, 64, 0.2)'
+    //     ],
+    //     borderColor: [
+    //       'rgba(255,99,132,1)',
+    //       'rgba(54, 162, 235, 1)',
+    //       'rgba(255, 206, 86, 1)',
+    //       'rgba(75, 192, 192, 1)',
+    //       'rgba(153, 102, 255, 1)',
+    //       'rgba(255, 159, 64, 1)'
+    //     ],
+    //     borderWidth: 1
+    //   }]
+    // },
+    options: {}
+  });
+}
+// drawChart();
 
 
 imageSection.addEventListener('click', handleClickEvent);
