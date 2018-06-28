@@ -10,8 +10,8 @@ var imageSection = document.getElementById('clickMe');
 var votingDataChart;
 
 //global variables for chart
-var chartProductLabels = [];
-var chartVotedTimes = [];
+// var chartProductLabels = [];
+// var chartVotedTimes = [];
 // var chartImageDisplayedCount = [];
 // var chartImagePercent = [];
 
@@ -23,7 +23,15 @@ Product.productsArray = [];
 //array for images clicked
 Product.totalClicks = 0;
 
-
+//local storage// if no local storage load
+if(!localStorage.getItem('tempProductCLicks')){
+  Product.productsArray = [];
+} else { 
+  Product.productsArray = JSON.parse(localStorage.getItem('tempProductClicks'));
+}
+if(localStorage.getItem('Product.totalclicks')){
+  Product.totalClicks = JSON.parse(localStorage.getItem('Product.totalClicks'));
+}
 
 //track which items were lastshonwn
 
@@ -42,7 +50,7 @@ function Product(src, imageName, size) {
 //rank photos
 Product.rankImages = function () {
   for (var i in this.productsArray) {
-    console.log(this.productsArray[i].votedFor);
+    console.log(this.productsArray[i].votedTimes);
   }
 };
 //setting up the first three product images as the past displayed images
@@ -132,6 +140,7 @@ function handleClickEvent(event) {
     console.log('25 clicks');
     generateProductData();
     drawChart();
+    Product.totalClicks = 0;
   }
 }
 imageSection.removeEventListener('click', handleClickEvent);
@@ -220,7 +229,20 @@ function drawChart() {
 }
 // drawChart();
 
+//set up local storage functions
+localStorage.setItem('Product.totalClicks', Product.totalClicks);
+
+function updateTempItemsClicked() {
+  localStorage.setItem('tempProductClicks', JSON.stringify(Product.totalClicks));
+}
+
+// function clearLocalStorage(){
+//   localStorage.clear();
+//   productsArray = [];
+// }
 
 imageSection.addEventListener('click', handleClickEvent);
 
+
 Product.renderThreeRandomly();
+updateTempItemsClicked();
