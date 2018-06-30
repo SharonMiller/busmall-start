@@ -98,9 +98,12 @@ nav li a {
    button:hover {
       background-color: grey;
    }
+   canvas {
+     max-width: 960px;
+   }
     footer {
     background-color: #575757;
-    max-width: 960px;
+    max-width: 940px;
     clear: both;
     height: 150px;
     padding: 10px 0;
