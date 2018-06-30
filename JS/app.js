@@ -123,7 +123,7 @@ function handleClickEvent(event) {
     storeTotalClicks();
   }
   //stop voting after 25 clicks and create the product chart
-  if (Product.totalClicks > 24) {
+  if (Product.totalClicks == 25) {
     console.log('25 clicks');
     imageSection.removeEventListener('click', handleClickEvent);
     generateProductChartData();
