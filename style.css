@@ -49,12 +49,16 @@ nav li a {
   main img {
     /* float: left; */
     margin: auto;
-    max-height: 300px;
+    max-height: 250px;
     max-width: 100%;
     top: 10px;
     margin-bottom: 20px;
     float: left;
     clear: both;
+    padding-left:15px;
+    padding-right:15px;
+    padding-top:5px;
+    padding-bottom:5px;
   }
   button {
     background-color:black;
@@ -89,6 +93,7 @@ nav li a {
     bottom: 0px;
     left: 0px;
     margin-top: 10px;
+    padding-left: 30px;
   }
    button:hover {
       background-color: grey;
@@ -99,5 +104,7 @@ nav li a {
     clear: both;
     height: 150px;
     padding: 10px 0;
-    margin-top: 30px
+    margin-top: 30px;
+    color: white;
+    text-align: center;
   }

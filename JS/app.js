@@ -9,12 +9,6 @@ var prodName3 = document.getElementById('vote3');
 var imageSection = document.getElementById('clickMe');
 var votingDataChart;
 
-//global variables for chart
-// var chartProductLabels = [];
-// var chartVotedTimes = [];
-// var chartImageDisplayedCount = [];
-// var chartImagePercent = [];
-
 //===================
 
 //create array for all images
@@ -48,18 +42,12 @@ function Product(src, imageName, size) {
 //   console.log ('rendering');
 // };
 
-//rank photos
-Product.rankImages = function () {
-  for (var i in this.productsArray) {
-    console.log(this.productsArray[i].votedTimes);
-  }
-};
 //setting up the first three product images as the past displayed images
 var pastRandomNumber1 = 0;
 var pastRandomNumber2 = 1;
 var pastRandomNumber3 = 2;
 
-//funtion to choose three new random images
+//function to choose three new random images
 Product.renderThreeRandomly = function () {
   var randomNumber1;
   var randomNumber2;
@@ -100,11 +88,7 @@ Product.renderThreeRandomly = function () {
   prodName3.textContent = Product.productsArray[randomNumber3].imageName;
 };
 
-// product1.src = this.productsArray[randomNumber1].src;
-
-
-
-//new products
+//generate new products
 function generateProductData() {
   new Product('./img/bag.jpg', 'Star Wars Carry-ons');
   new Product('./img/banana.jpg', 'Banana Slicer');
@@ -139,18 +123,18 @@ function handleClickEvent(event) {
     storeTotalClicks();
   }
   //stop voting after 25 clicks and create the product chart
-  if (Product.totalClicks == 25) {
+  if (Product.totalClicks > 24) {
     console.log('25 clicks');
+    imageSection.removeEventListener('click', handleClickEvent);
     generateProductChartData();
     drawChart();
     Product.totalClicks = 0;
   }
 }
-imageSection.removeEventListener('click', handleClickEvent);
+
 
 //Create a function to display my labels in my chart
 function generateProductChartData() {
-  // console.log('this is my product data');
   for (var i = 0; i < Product.productsArray.length; i++) {
     productData.labels[i] = Product.productsArray[i].imageName;
     productData.datasets['0']['data'][i] = Product.productsArray[i].votedTimes;
@@ -206,21 +190,12 @@ function drawChart() {
     options: {}
   });
 }
-// drawChart();
 
 //set up local storage functions
-// localStorage.setItem('Product.totalClicks', Product.totalClicks);
-
 function storeTotalClicks() {
   localStorage.setItem('Product.totalClicks', Product.totalClicks);
   localStorage.setItem('AllProducts', JSON.stringify(Product.productsArray));
 }
-
-// function clearLocalStorage(){
-//   localStorage.clear();
-//   productsArray = [];
-// }
-
 imageSection.addEventListener('click', handleClickEvent);
 retrieveData();
 
