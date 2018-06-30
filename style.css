@@ -2,69 +2,64 @@ header {
   background-color: #575757;
   padding: 10px 0;
   margin-bottom: 30px;
-  max-width:1020px;
+  max-width:960px;
 }
 nav {
   height: 70px;
   max-width: 960px;
   margin: 10px auto;
-
 }
-nav img{
+nav img {
   display: block;
   float: left;
 }
-nav ul{
+nav ul {
   float: left;
   color: black;
 }
-nav li{
+nav li {
   display: inline-block;
   margin-left: 30px;
   width: 130px;
   line-height: 70px;
   white-space: nowrap;
   color: black;
-
 }
-nav li a{
+nav li a {
   color: #ffffff;
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 50px;
   padding: 30px;
-
 }
-
   main{
     max-width: 960;
     margin-left: 2.5%;
     margin-right: 2.5%;
     margin-bottom: 30px;
   }
-
-  main > img{
+  main > img {
     margin-bottom:30px;
-    
   }
-
   main > ul {
       margin-bottom:30px;
       margin-top:30px;
       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  
   }
-  main img{
+  main img {
     /* float: left; */
     margin: auto;
-    max-height: 300px;
+    max-height: 250px;
     max-width: 100%;
     top: 10px;
     margin-bottom: 20px;
     float: left;
     clear: both;
+    padding-left:15px;
+    padding-right:15px;
+    padding-top:5px;
+    padding-bottom:5px;
   }
-
   button {
     background-color:black;
     color:white;
@@ -76,8 +71,8 @@ nav li a{
     display: block;
     clear: both;
     margin-top: 20px;
-    }
-  .instructions {
+  }
+  .instructions{
     max-width: 960px;
     padding-top: 50px;
     display: inline, block; 
@@ -86,7 +81,7 @@ nav li a{
   }
   main section h2 {
     font-size: 1.5em;
-   
+  
   }
   .imageContainer {
     float:left;
@@ -98,19 +93,18 @@ nav li a{
     bottom: 0px;
     left: 0px;
     margin-top: 10px;
+    padding-left: 30px;
   }
-
    button:hover {
       background-color: grey;
-   
-
    }
     footer {
     background-color: #575757;
-    max-width: 1020px;
+    max-width: 960px;
     clear: both;
     height: 150px;
     padding: 10px 0;
-    margin-top: 30px
-
+    margin-top: 30px;
+    color: white;
+    text-align: center;
   }
