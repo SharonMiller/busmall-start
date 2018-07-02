@@ -8,12 +8,10 @@ var product3 = document.getElementById('product3');
 var prodName3 = document.getElementById('vote3');
 var imageSection = document.getElementById('clickMe');
 var votingDataChart;
-
+//add a boolean to the draw chart - if true becuase it rendered then draw chart on refresh otherwise dont
 //===================
-
 //create array for all images
 Product.productsArray = [];
-
 //array for images clicked
 Product.totalClicks = 0;
 function retrieveData() {
@@ -26,10 +24,14 @@ function retrieveData() {
   }
   if (localStorage.getItem('Product.totalClicks')) {
     Product.totalClicks = JSON.parse(localStorage.getItem('Product.totalClicks'));
+  } if (Product.totalClicks > 24) {
+    imageSection.removeEventListener('click', handleClickEvent);
+    generateProductChartData();
+    drawChart();
+    localStorage.clear();
   }
 }
-//track which items were lastshonwn
-
+//function to create constructor
 function Product(src, imageName, size) {
   this.src = src;
   this.imageName = imageName;
@@ -38,15 +40,10 @@ function Product(src, imageName, size) {
   this.size = size || '300px';
   Product.productsArray.push(this);
 };
-// ItemImage.prototype.render = function(){
-//   console.log ('rendering');
-// };
-
 //setting up the first three product images as the past displayed images
 var pastRandomNumber1 = 0;
 var pastRandomNumber2 = 1;
 var pastRandomNumber3 = 2;
-
 //function to choose three new random images
 Product.renderThreeRandomly = function () {
   var randomNumber1;
@@ -87,7 +84,6 @@ Product.renderThreeRandomly = function () {
   prodName2.textContent = Product.productsArray[randomNumber2].imageName;
   prodName3.textContent = Product.productsArray[randomNumber3].imageName;
 };
-
 //generate new products
 function generateProductData() {
   new Product('./img/bag.jpg', 'Star Wars Carry-ons');
@@ -111,7 +107,6 @@ function generateProductData() {
   new Product('./img/water-can.jpg', 'Water Can');
   new Product('./img/wine-glass.jpg', 'Wine Glass');
 }
-
 function handleClickEvent(event) {
   var clickedNode = event.target;
   // console.log(Product.totalClicks);
@@ -131,7 +126,6 @@ function handleClickEvent(event) {
     Product.totalClicks = 0;
   }
 }
-
 
 //Create a function to display my labels in my chart
 function generateProductChartData() {
@@ -179,8 +173,6 @@ var productData = {
     borderWidth: 1,
   }]
 };
-
-
 // chart info function//////////////
 function drawChart() {
   var ctx = document.getElementById('votingDataChart').getContext('2d');
@@ -190,7 +182,6 @@ function drawChart() {
     options: {}
   });
 }
-
 //set up local storage functions
 function storeTotalClicks() {
   localStorage.setItem('Product.totalClicks', Product.totalClicks);
